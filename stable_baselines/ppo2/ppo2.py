@@ -2,6 +2,7 @@ import time
 import sys
 import multiprocessing
 from collections import deque
+from tqdm import tqdm 
 
 import gym
 import numpy as np
@@ -281,7 +282,7 @@ class PPO2(ActorCriticRLModel):
             t_first_start = time.time()
 
             nupdates = total_timesteps // self.n_batch
-            for update in range(1, nupdates + 1):
+            for update in tqdm(range(1, nupdates + 1)):
                 assert self.n_batch % self.nminibatches == 0
                 batch_size = self.n_batch // self.nminibatches
                 t_start = time.time()
